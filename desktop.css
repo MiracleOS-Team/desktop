@@ -1,0 +1,282 @@
+.blue {
+    background-color: blue;
+  }
+  
+  .green {
+    background-color: green;
+  }
+  
+  .yellow {
+    background-color: yellow;
+  }
+  
+  .purple {
+    background-color: purple;
+  }
+  
+  .red {
+    background-color: red;
+  }
+  
+  .orange {
+    background-color: orange;
+  }
+  
+  .pink {
+    background-color: pink;
+  }
+  
+  .teal {
+    background-color: teal;
+  }
+  
+  .cyan {
+    background-color: cyan;
+  }
+  
+  .indigo {
+    background-color: indigo;
+  }
+  
+  .lime {
+    background-color: lime;
+  }
+  
+  .brown {
+    background-color: brown;
+  }
+  
+  .gray {
+    background-color: gray;
+  }
+  
+  .gold {
+    background-color: gold;
+  }
+  
+  .silver {
+    background-color: silver;
+  }
+  
+  .violet {
+    background-color: violet;
+  }
+  
+  .magenta {
+    background-color: magenta;
+  }
+  
+  .aqua {
+    background-color: aqua;
+  }
+  
+  .khaki {
+    background-color: khaki;
+  }
+  
+  .coral {
+    background-color: coral;
+  }
+  
+  .navy {
+    background-color: navy;
+  }
+  
+  .olive {
+    background-color: olive;
+  }
+  
+  .maroon {
+    background-color: maroon;
+  }
+  
+  .turquoise {
+    background-color: turquoise;
+  }
+  
+  .h1 {
+    font-size: 1.5em; /* 40px/16=2.5em */
+    font-weight: bolder;
+  }
+  
+  .h2 {
+    font-size: 1.25em; /* 30px/16=1.875em */
+    font-weight: bold;
+  }
+  
+  .h3 {
+    font-size: 1.1em;
+    font-weight: bold;
+  }
+  
+  .h4 {
+    font-size: 0.75em;
+  }
+  
+  .button {
+    background-color: #97315D;
+    border-radius: 25px;
+    padding: 10px;
+  }
+  
+  .mos-input {
+    background-color: rgba(79, 15, 25, 0.7);
+    padding: 15px;
+    border-radius: 25px;
+  }
+  
+  .notification_bar {
+    color: white;
+    margin: 15px;
+  }
+  
+  .ntf_text_contents {
+    margin: 15px;
+  }
+  
+  .ntf_text_contents .h4 {
+    margin-top: 10px;
+  }
+  
+  .ntf_main_image {
+    margin: 15px;
+    margin-top: 10px;
+  }
+  
+  .ntf_top_bar {
+    padding: 10px;
+  }
+  
+  .ntf_topbar_text image {
+    margin-right: 10px;
+  }
+  
+  .ntf_main_div {
+    background: radial-gradient(circle, #4E122F, #5e2c44);
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 20px;
+  }
+  
+  .mm_tab {
+    border-radius: 10px;
+    padding: 15px;
+    margin: 10px;
+    background-color: rgba(94, 44, 68, 0.5);
+  }
+  
+  .mm_toppart {
+    border-bottom: #ffffff solid 1px;
+    margin-top: 10px;
+    padding-bottom: 20px;
+  }
+  
+  .mm_applist_appgroup {
+    padding-left: 10px;
+  }
+  
+  .mm_applist_app {
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+  
+  .mm_bottompart {
+    padding: 15px;
+  }
+  
+  .mm_profileinfo image {
+    margin: 5px;
+    margin-right: 10px;
+  }
+  
+  .mm_profileinfo .h1 {
+    margin-top: 3px;
+  }
+  
+  .mm_managingicons * {
+    margin: 5px;
+  }
+  
+  .mm_menu_m2 {
+    background-color: rgba(94, 44, 68, 0.6);
+    padding: 10px;
+    padding-left: 25px;
+    padding-right: 25px;
+    border-radius: 25px;
+  }
+  
+  * {
+    all: unset;
+  }
+  
+  .bar {
+    color: #ffffff;
+    padding: 10px;
+  }
+  
+  .activate-linux {
+    color: rgba(250, 250, 250, 0.5);
+  }
+  .activate-linux.background {
+    background: none;
+  }
+  
+  .app:hover {
+    background: rgba(255, 255, 255, 0.5);
+  }
+  
+  .app {
+    transition: all 1s;
+    background: rgba(255, 255, 255, 0.25);
+    padding: 5px;
+    border-radius: 20000px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+  
+  .clock-text {
+    font-weight: 900;
+    font-size: xx-large;
+  }
+  
+  .day-text {
+    padding-left: 10px;
+    font-weight: 900;
+    font-size: x-large;
+  }
+  
+  .notification-bell-wrapper {
+    background: white;
+    color: black;
+    border-radius: 200000px;
+    padding: 0px;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-left: 15px;
+    margin-right: 5px;
+  }
+  
+  .status-icons-wrapper {
+    background: white;
+    color: black;
+    border-radius: 200000px;
+    padding: 0px;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+  
+  .center-icons image {
+    margin: 5px;
+  }
+  
+  .other-icons-wrapper image {
+    margin: 5px;
+  }
+  
+  .status-icons-wrapper image {
+    margin: 5px;
+  }
