@@ -280,3 +280,7 @@
   .status-icons-wrapper image {
     margin: 5px;
   }
+
+  .workspaces * {
+    margin: 0px;
+  }
