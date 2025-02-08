@@ -3,7 +3,7 @@ module github.com/MiracleOS-Team/desktop
 go 1.22.2
 
 require (
-	github.com/MiracleOS-Team/desktoplib v0.0.0-20250204155824-a42d5b7c24e3
+	github.com/MiracleOS-Team/desktoplib v0.0.0-20250208145244-91c183a6941e
 	github.com/MiracleOS-Team/libxdg-go v0.0.0-20250203122932-0d6a9fc71582
 	github.com/dlasky/gotk3-layershell v0.0.0-20240515133811-5c5115f0d774
 	github.com/gotk3/gotk3 v0.6.5-0.20240618185848-ff349ae13f56

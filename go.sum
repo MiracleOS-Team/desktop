@@ -6,6 +6,10 @@ github.com/MiracleOS-Team/desktoplib v0.0.0-20250203213240-ff0177e4ccaa h1:yAqSw
 github.com/MiracleOS-Team/desktoplib v0.0.0-20250203213240-ff0177e4ccaa/go.mod h1:LvzdmHbq2om/X8sPOcR3faqsZQRHTVMCm58NFp2aLIU=
 github.com/MiracleOS-Team/desktoplib v0.0.0-20250204155824-a42d5b7c24e3 h1:+UZtfbdcpSCXIap83dOHxWcMOqc42jCpYepfidv6xGY=
 github.com/MiracleOS-Team/desktoplib v0.0.0-20250204155824-a42d5b7c24e3/go.mod h1:lsr1apHlN/KIBNQdH2ngannvIIBKnYRvyo8oCgBoaVE=
+github.com/MiracleOS-Team/desktoplib v0.0.0-20250208144711-a5bbe5d446ea h1:vo1i1b8oLw8E//JbaCziKeVYstxWnyS+Vh7F+4rxal8=
+github.com/MiracleOS-Team/desktoplib v0.0.0-20250208144711-a5bbe5d446ea/go.mod h1:0ngQ5R2b2J6/WRk1vhBiVrGYkc0XdUlD20rjFlM9vUs=
+github.com/MiracleOS-Team/desktoplib v0.0.0-20250208145244-91c183a6941e h1:YculMH5KeiHvUKDHlKJmz/3GO1jWAAxxKv9X/N+Dekg=
+github.com/MiracleOS-Team/desktoplib v0.0.0-20250208145244-91c183a6941e/go.mod h1:0ngQ5R2b2J6/WRk1vhBiVrGYkc0XdUlD20rjFlM9vUs=
 github.com/MiracleOS-Team/libxdg-go v0.0.0-20250126160842-bc18282c37ee h1:jsl3imeBR+qACjnTzGHJt1zrvrkW5MkHyFFpsmYnzxk=
 github.com/MiracleOS-Team/libxdg-go v0.0.0-20250126160842-bc18282c37ee/go.mod h1:mKskdRQzPihHpgc1aUN06dlR2ECTxQWgPzOY3u2To+I=
 github.com/MiracleOS-Team/libxdg-go v0.0.0-20250130123149-66a2b3e59a66 h1:zax0cvv63QOakMKGH4p1UN9UfVW9bRHEe1Q2GGRPt00=

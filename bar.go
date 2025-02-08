@@ -54,6 +54,16 @@ func createSidestuff() *gtk.Box {
 		volumeImage, _ := gtk.ImageNewFromIconName(volumeIcon, gtk.ICON_SIZE_BUTTON)
 		sc, _ = volumeImage.GetStyleContext()
 		sc.AddClass("sound")
+		glib.TimeoutAdd(uint(500), func() bool {
+
+			newVolumeIcon, err := volumeHandler.GetAudioIcon()
+			if err == nil {
+				volumeImage.SetFromIconName(newVolumeIcon, gtk.ICON_SIZE_BUTTON)
+			}
+
+			// Return true to keep the timeout active.
+			return true
+		})
 
 		statusBox.PackStart(volumeImage, false, false, 0)
 	}
@@ -66,6 +76,17 @@ func createSidestuff() *gtk.Box {
 		sc, _ = networkImage.GetStyleContext()
 		sc.AddClass("network")
 
+		glib.TimeoutAdd(uint(500), func() bool {
+
+			networkIcon, err := networkManagerHandler.GetNetworkIcon()
+			if err == nil {
+				networkImage.SetFromIconName(networkIcon, gtk.ICON_SIZE_BUTTON)
+			}
+
+			// Return true to keep the timeout active.
+			return true
+		})
+
 		statusBox.PackStart(networkImage, false, false, 0)
 	}
 
@@ -74,6 +95,17 @@ func createSidestuff() *gtk.Box {
 
 		sc, _ = batteryImage.GetStyleContext()
 		sc.AddClass("power")
+
+		glib.TimeoutAdd(uint(500), func() bool {
+
+			if batteryHandler.IsBattery() {
+				newBatteryIcon := batteryHandler.GetBatteryIcon()
+				batteryImage.SetFromIconName(newBatteryIcon, gtk.ICON_SIZE_BUTTON)
+			}
+
+			// Return true to keep the timeout active.
+			return true
+		})
 
 		statusBox.PackStart(batteryImage, false, false, 0)
 	}
@@ -141,17 +173,17 @@ func createWorkspaces() *gtk.Box {
 		sc, _ := imgButton.GetStyleContext()
 		sc.AddClass("app")
 
-		img, _ := gtk.ImageNewFromIconName(k.AppID, gtk.ICON_SIZE_BUTTON)
-		imgButton.Add(img)
+		pathn, err := foreignToplevel.GetIconFromToplevel(k, 16, 1)
+		if err == nil {
+			img, _ := gtk.ImageNewFromFile(pathn)
+			imgButton.Add(img)
+		}
+
+		imgButton.Connect("clicked", func() {
+			foreignToplevel.SelectToplevel(k)
+		})
 		box.PackStart(imgButton, false, false, 0)
 	}
-	// Placeholder for dynamic window list
-	imgButton1, _ := gtk.ButtonNew()
-	sc, _ = imgButton1.GetStyleContext()
-	sc.AddClass("app")
-	img1, _ := gtk.ImageNewFromIconName("preferences-desktop", gtk.ICON_SIZE_BUTTON)
-	imgButton1.Add(img1)
-	box.PackStart(imgButton1, false, false, 0)
 
 	return box
 }
@@ -166,9 +198,15 @@ func createMainIcons() *gtk.Box {
 	customButton, _ := gtk.ButtonNew()
 	customButton.Add(customIcon)
 
+	mm := createMainMenu()
+
 	customButton.Connect("clicked", func() {
-		createMainMenu().ShowAll()
-		box.Hide()
+		if mm.IsVisible() {
+			mm.Hide()
+		} else {
+			mm.ShowAll()
+		}
+		//box.Hide()
 	})
 
 	box.PackStart(desktopImage, false, false, 0)
@@ -208,6 +246,19 @@ func createBar() *gtk.Window {
 	box.PackStart(createWorkspaces(), false, false, 0)
 	box.SetCenterWidget(createMainIcons())
 	box.PackEnd(createSidestuff(), false, false, 0)
+
+	glib.TimeoutAdd(uint(500), func() bool {
+		chil := box.GetChildren()
+		chil.NthData(uint(0)).(*gtk.Widget).Destroy()
+
+		wspaces := createWorkspaces()
+		box.PackStart(wspaces, false, false, 0)
+
+		box.ShowAll()
+		// Return true to keep the timeout active.
+		return true
+	})
+
 	win.Add(box)
 	return win
 }

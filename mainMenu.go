@@ -50,7 +50,17 @@ func createAppList() *gtk.ScrolledWindow {
 	scroll.SetPolicy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
 	vbox, _ := gtk.BoxNew(gtk.ORIENTATION_VERTICAL, 5)
 
-	apps, _ := desktopFiles.ListAllApplications()
+	apps1, _ := desktopFiles.ListAllApplications()
+
+	apps := []desktopFiles.DesktopFile{}
+
+	for _, app := range apps1 {
+		if app.NoDisplay {
+			continue
+		} else {
+			apps = append(apps, app)
+		}
+	}
 
 	categories := map[string][]desktopFiles.DesktopFile{}
 
