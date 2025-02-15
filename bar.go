@@ -2,12 +2,14 @@ package main
 
 import (
 	"fmt"
+	"strconv"
 	"time"
 
 	"github.com/MiracleOS-Team/desktoplib/batteryHandler"
 	"github.com/MiracleOS-Team/desktoplib/foreignToplevel"
 	"github.com/MiracleOS-Team/desktoplib/networkManagerHandler"
 	"github.com/MiracleOS-Team/desktoplib/volumeHandler"
+	"github.com/MiracleOS-Team/libxdg-go/notificationDaemon"
 	"github.com/dlasky/gotk3-layershell/layershell"
 	"github.com/gotk3/gotk3/gdk"
 	"github.com/gotk3/gotk3/glib"
@@ -31,7 +33,7 @@ func getDateInfo() (string, string) {
 	return curDayCal, curTimeInString
 }
 
-func createSidestuff() *gtk.Box {
+func createSidestuff(nDaemon *notificationDaemon.Daemon) *gtk.Box {
 	sideBox, _ := gtk.BoxNew(gtk.ORIENTATION_HORIZONTAL, 0)
 	sideBox.SetHAlign(gtk.ALIGN_END)
 	sc, _ := sideBox.GetStyleContext()
@@ -144,8 +146,20 @@ func createSidestuff() *gtk.Box {
 	sc, _ = notificationImage.GetStyleContext()
 	sc.AddClass("notification-bell")
 
-	notificationBox.PackStart(notificationImage, false, false, 0)
+	notificationText, _ := gtk.LabelNew(strconv.Itoa(len(nDaemon.Notifications)))
+	sc, _ = notificationText.GetStyleContext()
+	sc.AddClass("h2")
+
+	notificationBox.PackStart(notificationText, false, false, 0)
 	notificationButton.Add(notificationBox)
+
+	glib.TimeoutAdd(uint(100), func() bool {
+		// Get new date/time info.
+		notificationText.SetText(strconv.Itoa(len(nDaemon.Notifications)))
+
+		// Return true to keep the timeout active.
+		return true
+	})
 
 	sideBox.PackStart(otherIcons, false, false, 0)
 	sideBox.PackStart(statusBox, false, false, 0)
@@ -216,7 +230,7 @@ func createMainIcons() *gtk.Box {
 	return box
 }
 
-func createBar() *gtk.Window {
+func createBar(nDaemon *notificationDaemon.Daemon) *gtk.Window {
 	win, _ := gtk.WindowNew(gtk.WINDOW_TOPLEVEL)
 	win.SetTitle("Main Bar")
 	win.SetDecorated(false)
@@ -245,7 +259,7 @@ func createBar() *gtk.Window {
 	sc.AddClass("bar")
 	box.PackStart(createWorkspaces(), false, false, 0)
 	box.SetCenterWidget(createMainIcons())
-	box.PackEnd(createSidestuff(), false, false, 0)
+	box.PackEnd(createSidestuff(nDaemon), false, false, 0)
 
 	glib.TimeoutAdd(uint(500), func() bool {
 		chil := box.GetChildren()

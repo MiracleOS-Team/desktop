@@ -16,6 +16,10 @@ github.com/MiracleOS-Team/libxdg-go v0.0.0-20250130123149-66a2b3e59a66 h1:zax0cv
 github.com/MiracleOS-Team/libxdg-go v0.0.0-20250130123149-66a2b3e59a66/go.mod h1:mKskdRQzPihHpgc1aUN06dlR2ECTxQWgPzOY3u2To+I=
 github.com/MiracleOS-Team/libxdg-go v0.0.0-20250203122932-0d6a9fc71582 h1:Ce5u6O6M1586/JQxVvGr/GCClbxUJbtRPckg4ZfFawY=
 github.com/MiracleOS-Team/libxdg-go v0.0.0-20250203122932-0d6a9fc71582/go.mod h1:mKskdRQzPihHpgc1aUN06dlR2ECTxQWgPzOY3u2To+I=
+github.com/MiracleOS-Team/libxdg-go v0.0.0-20250214174651-a76479f5ae9b h1:AFndsH1gdz3zJLP0cWGtnywP8zbk+gwCGKAxZTPads8=
+github.com/MiracleOS-Team/libxdg-go v0.0.0-20250214174651-a76479f5ae9b/go.mod h1:GA/p+ukjyXCsrcpGvs0/gFp1NeHAMtJG/sYT0JcImfE=
+github.com/MiracleOS-Team/libxdg-go v0.0.0-20250214180153-81dbe745c61a h1:0JcWX9wXTvCl/Q4qYln8hjv6fOXUAo2jiduJqzxgJC8=
+github.com/MiracleOS-Team/libxdg-go v0.0.0-20250214180153-81dbe745c61a/go.mod h1:GA/p+ukjyXCsrcpGvs0/gFp1NeHAMtJG/sYT0JcImfE=
 github.com/bep/godartsass v1.2.0 h1:E2VvQrxAHAFwbjyOIExAMmogTItSKodoKuijNrGm5yU=
 github.com/bep/godartsass v1.2.0/go.mod h1:6LvK9RftsXMxGfsA0LDV12AGc4Jylnu6NgHL+Q5/pE8=
 github.com/bep/godartsass/v2 v2.3.2 h1:meuc76J1C1soSCAnlnJRdGqJ5S4m6/GW+8hmOe9tOog=

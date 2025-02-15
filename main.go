@@ -72,8 +72,14 @@ func main() {
 	//win := createMainMenu()
 	//win.ShowAll()
 
-	bar := createBar()
+	daemon := listenNotifications()
+	defer daemon.Stop()
+
+	bar := createBar(daemon)
 	bar.ShowAll()
+
+	//notificationBar := createNotificationBar(daemon)
+	//notificationBar.ShowAll()
 
 	gtk.Main()
 }
