@@ -78,8 +78,5 @@ func main() {
 	bar := createBar(daemon)
 	bar.ShowAll()
 
-	//notificationBar := createNotificationBar(daemon)
-	//notificationBar.ShowAll()
-
 	gtk.Main()
 }

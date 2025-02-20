@@ -155,6 +155,29 @@ func createNotificationBar(nDaemon *notificationDaemon.Daemon) *gtk.Window {
 
 	mBox.PackStart(createNotificationBarTitle(nDaemon), false, false, 0)
 
+	glib.TimeoutAdd(uint(500), func() bool {
+		chil := mBox.GetChildren()
+
+		cLength := int(chil.Length())
+
+		for i := 0; i < cLength; i++ {
+			chil.NthData(uint(i)).(*gtk.Widget).Destroy()
+		}
+
+		for _, nt := range nDaemon.Notifications {
+			mBox.PackEnd(createNotification(&nt, nDaemon), false, false, 0)
+		}
+
+		mBox.PackStart(createNotificationBarTitle(nDaemon), false, false, 0)
+
+		mBox.ShowAll()
+		if len(nDaemon.Notifications) == 0 {
+			win.Hide()
+		}
+		// Return true to keep the timeout active.
+		return true
+	})
+
 	win.Add(mBox)
 
 	return win

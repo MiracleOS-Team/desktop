@@ -142,6 +142,20 @@ func createSidestuff(nDaemon *notificationDaemon.Daemon) *gtk.Box {
 	sc, _ = notificationBox.GetStyleContext()
 	sc.AddClass("notification-bell-wrapper")
 
+	notificationBar := createNotificationBar(nDaemon)
+	notificationButton.Connect("clicked", func() {
+		if notificationBar.IsVisible() {
+			notificationBar.Hide()
+		} else {
+			if len(nDaemon.Notifications) != 0 {
+				notificationBar.ShowAll()
+			}
+
+		}
+	})
+
+	ntStack, _ := gtk.StackNew()
+
 	notificationImage, _ := gtk.ImageNewFromIconName("preferences-system-notifications-symbolic", gtk.ICON_SIZE_BUTTON)
 	sc, _ = notificationImage.GetStyleContext()
 	sc.AddClass("notification-bell")
@@ -150,12 +164,22 @@ func createSidestuff(nDaemon *notificationDaemon.Daemon) *gtk.Box {
 	sc, _ = notificationText.GetStyleContext()
 	sc.AddClass("h2")
 
-	notificationBox.PackStart(notificationText, false, false, 0)
+	ntStack.Add(notificationImage)
+	ntStack.Add(notificationText)
+
+	notificationBox.PackStart(ntStack, false, false, 0)
 	notificationButton.Add(notificationBox)
 
 	glib.TimeoutAdd(uint(100), func() bool {
 		// Get new date/time info.
 		notificationText.SetText(strconv.Itoa(len(nDaemon.Notifications)))
+		if len(nDaemon.Notifications) == 0 {
+			ntStack.SetVisibleChild(notificationImage)
+			ntStack.SetTransitionType(gtk.STACK_TRANSITION_TYPE_SLIDE_LEFT)
+		} else {
+			ntStack.SetVisibleChild(notificationText)
+			ntStack.SetTransitionType(gtk.STACK_TRANSITION_TYPE_SLIDE_RIGHT)
+		}
 
 		// Return true to keep the timeout active.
 		return true
