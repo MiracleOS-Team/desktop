@@ -10,6 +10,10 @@ github.com/MiracleOS-Team/desktoplib v0.0.0-20250208144711-a5bbe5d446ea h1:vo1i1
 github.com/MiracleOS-Team/desktoplib v0.0.0-20250208144711-a5bbe5d446ea/go.mod h1:0ngQ5R2b2J6/WRk1vhBiVrGYkc0XdUlD20rjFlM9vUs=
 github.com/MiracleOS-Team/desktoplib v0.0.0-20250208145244-91c183a6941e h1:YculMH5KeiHvUKDHlKJmz/3GO1jWAAxxKv9X/N+Dekg=
 github.com/MiracleOS-Team/desktoplib v0.0.0-20250208145244-91c183a6941e/go.mod h1:0ngQ5R2b2J6/WRk1vhBiVrGYkc0XdUlD20rjFlM9vUs=
+github.com/MiracleOS-Team/desktoplib v0.0.0-20250223151317-6aea7b68fd34 h1:wjGTukw6FjWgnA3nqTONsiDSc3TCzul9fSa4G/xHvec=
+github.com/MiracleOS-Team/desktoplib v0.0.0-20250223151317-6aea7b68fd34/go.mod h1:940qBf4KOP8wmnlMFYA84KfTNhdcpuIfajBtT6+nUwA=
+github.com/MiracleOS-Team/desktoplib v0.0.0-20250223152628-950d1d75967b h1:InDRIbIFrT6oT4pBNJwugYk+9Z11TYEJmFg9xryRKqA=
+github.com/MiracleOS-Team/desktoplib v0.0.0-20250223152628-950d1d75967b/go.mod h1:940qBf4KOP8wmnlMFYA84KfTNhdcpuIfajBtT6+nUwA=
 github.com/MiracleOS-Team/libxdg-go v0.0.0-20250126160842-bc18282c37ee h1:jsl3imeBR+qACjnTzGHJt1zrvrkW5MkHyFFpsmYnzxk=
 github.com/MiracleOS-Team/libxdg-go v0.0.0-20250126160842-bc18282c37ee/go.mod h1:mKskdRQzPihHpgc1aUN06dlR2ECTxQWgPzOY3u2To+I=
 github.com/MiracleOS-Team/libxdg-go v0.0.0-20250130123149-66a2b3e59a66 h1:zax0cvv63QOakMKGH4p1UN9UfVW9bRHEe1Q2GGRPt00=
@@ -22,6 +26,8 @@ github.com/MiracleOS-Team/libxdg-go v0.0.0-20250214180153-81dbe745c61a h1:0JcWX9
 github.com/MiracleOS-Team/libxdg-go v0.0.0-20250214180153-81dbe745c61a/go.mod h1:GA/p+ukjyXCsrcpGvs0/gFp1NeHAMtJG/sYT0JcImfE=
 github.com/MiracleOS-Team/libxdg-go v0.0.0-20250218130005-9d3578a779a2 h1:ld+DJBjtlfFMTDSpEdUPWDcqoUPS3A3Cx+ZcgKl5uQs=
 github.com/MiracleOS-Team/libxdg-go v0.0.0-20250218130005-9d3578a779a2/go.mod h1:GA/p+ukjyXCsrcpGvs0/gFp1NeHAMtJG/sYT0JcImfE=
+github.com/MiracleOS-Team/libxdg-go v0.0.0-20250223113448-cfaa7a3ded96 h1:M/Ki+QZFalVLDZM/wBZBWJoq7XdvAEGYZvDg490uKHY=
+github.com/MiracleOS-Team/libxdg-go v0.0.0-20250223113448-cfaa7a3ded96/go.mod h1:GA/p+ukjyXCsrcpGvs0/gFp1NeHAMtJG/sYT0JcImfE=
 github.com/bep/godartsass v1.2.0 h1:E2VvQrxAHAFwbjyOIExAMmogTItSKodoKuijNrGm5yU=
 github.com/bep/godartsass v1.2.0/go.mod h1:6LvK9RftsXMxGfsA0LDV12AGc4Jylnu6NgHL+Q5/pE8=
 github.com/bep/godartsass/v2 v2.3.2 h1:meuc76J1C1soSCAnlnJRdGqJ5S4m6/GW+8hmOe9tOog=

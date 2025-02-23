@@ -4,6 +4,7 @@ import (
 	"log"
 	"os"
 
+	"github.com/MiracleOS-Team/desktoplib/wallpaper"
 	"github.com/gotk3/gotk3/gdk"
 	"github.com/gotk3/gotk3/gtk"
 )
@@ -67,6 +68,8 @@ func firstN(s string, n int) string {
 }
 
 func main() {
+	wallpaper.SetImageWallpaper("/usr/share/backgrounds/miracleos_dark_default.jpg", "")
+
 	gtk.Init(&os.Args)
 	loadCSS()
 	//win := createMainMenu()
