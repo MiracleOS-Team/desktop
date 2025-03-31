@@ -68,12 +68,15 @@ func firstN(s string, n int) string {
 }
 
 func main() {
+	err := EnsureInstallation()
+	if err != nil {
+		panic(err)
+	}
+
 	wallpaper.SetImageWallpaper("/usr/share/backgrounds/miracleos_dark_default.jpg", "")
 
 	gtk.Init(&os.Args)
 	loadCSS()
-	//win := createMainMenu()
-	//win.ShowAll()
 
 	daemon := listenNotifications()
 	defer daemon.Stop()
