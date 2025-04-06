@@ -3,12 +3,15 @@ package main
 import (
 	"fmt"
 	"os"
+	"os/user"
 	"sort"
 
 	"github.com/MiracleOS-Team/libxdg-go/desktopFiles"
 	"github.com/dlasky/gotk3-layershell/layershell"
 	"github.com/gotk3/gotk3/gdk"
 	"github.com/gotk3/gotk3/gtk"
+	"golang.org/x/text/cases"
+	"golang.org/x/text/language"
 )
 
 func createAppGroup(apps []desktopFiles.DesktopFile) *gtk.Box {
@@ -109,12 +112,47 @@ func createAppList() *gtk.ScrolledWindow {
 }
 
 func createUserInfo() *gtk.Box {
+	userObject, err := user.Current()
+	if err != nil {
+		panic(err)
+	}
+
+	subtitle := "Standard User"
+
+	groups, err := userObject.GroupIds()
+	if err == nil {
+		for _, groupId := range groups {
+			gp, err := user.LookupGroupId(groupId)
+			if err != nil {
+				continue
+			}
+			if gp.Name == "sudo" {
+				subtitle = "Administrator"
+			}
+			if gp.Name == "wheel" {
+				subtitle = "Administrator"
+			}
+
+		}
+
+	}
+
 	userBox, _ := gtk.BoxNew(gtk.ORIENTATION_HORIZONTAL, 10)
 	userImage, _ := gtk.ImageNewFromFile("images/pp.png")
-	userLabel, _ := gtk.LabelNew("Abdi\nanonymous@gmail.com")
-	userLabel.SetXAlign(0)
+	userNameBox, _ := gtk.BoxNew(gtk.ORIENTATION_VERTICAL, 0)
+
+	userNameLabel, _ := gtk.LabelNew(cases.Title(language.English, cases.Compact).String(userObject.Username))
+	userNameLabel.SetXAlign(0)
+	sc, _ := userNameLabel.GetStyleContext()
+	sc.AddClass("h2")
+
+	userSubtitleLabel, _ := gtk.LabelNew(subtitle)
+	userSubtitleLabel.SetXAlign(0)
+
+	userNameBox.PackStart(userNameLabel, false, false, 0)
+	userNameBox.PackEnd(userSubtitleLabel, false, false, 0)
 	userBox.PackStart(userImage, false, false, 5)
-	userBox.PackStart(userLabel, false, false, 5)
+	userBox.PackStart(userNameBox, false, false, 5)
 	return userBox
 }
 

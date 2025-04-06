@@ -213,7 +213,12 @@ func createWorkspaces() *gtk.Box {
 
 		pathn, err := foreignToplevel.GetIconFromToplevel(k, 16, 1)
 		if err == nil {
-			img, _ := gtk.ImageNewFromFile(pathn)
+
+			pixb, _ := gdk.PixbufNewFromFile(pathn)
+
+			pixbuf, _ := pixb.ScaleSimple(16, 16, gdk.INTERP_BILINEAR)
+
+			img, _ := gtk.ImageNewFromPixbuf(pixbuf)
 			imgButton.Add(img)
 		}
 

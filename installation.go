@@ -4,6 +4,7 @@ import (
 	"io"
 	"net/http"
 	"os"
+	"os/exec"
 
 	"github.com/MiracleOS-Team/desktoplib/foreignToplevel"
 	basedir "github.com/MiracleOS-Team/libxdg-go/baseDir"
@@ -15,6 +16,13 @@ func checkRequiredDirectoriesAndCreate() error {
 
 	if os.IsNotExist(mosSoft) {
 		err := os.Mkdir("/opt/miracleos-software", os.ModePerm)
+		return err
+	}
+
+	_, deskData := os.Stat("/opt/miracleos-software/desk-data")
+
+	if os.IsNotExist(deskData) {
+		err := os.Mkdir("/opt/miracleos-software/desk-data", os.ModePerm)
 		return err
 	}
 
@@ -65,6 +73,33 @@ func checkRequiredReposAndDownload() error {
 		return err
 	}
 
+	_, mosIcons := os.Stat("/opt/miracleos-software/Icons")
+
+	if os.IsNotExist(mosIcons) {
+		_, err := git.PlainClone("/opt/miracleos-software/Icons", false, &git.CloneOptions{
+			URL:      "https://github.com/MiracleOS-Team/Icons",
+			Progress: os.Stdout,
+		})
+		return err
+	}
+
+	_, mosIconsInstall := os.Stat("/usr/share/icons/MiracleOSIcons")
+
+	if os.IsNotExist(mosIconsInstall) {
+		err := os.CopyFS("/usr/share/icons/MiracleOSIcons", os.DirFS("/opt/miracleos-software/Icons/MiracleOSIcons"))
+		return err
+	}
+
+	_, appIconsAlias := os.Stat("/opt/miracleos-software/desk-data/app-icons-alias.json")
+	if os.IsNotExist(appIconsAlias) {
+		downloadFile("https://github.com/MiracleOS-Team/desktoplib/raw/refs/heads/main/app-icons-alias.json", "/opt/miracleos-software/desk-data/app-icons-alias.json")
+	}
+
+	_, wallpaperDark := os.Stat("/usr/share/backgrounds/miracleos_dark_default.jpg")
+	if os.IsNotExist(wallpaperDark) {
+		downloadFile("https://raw.githubusercontent.com/MiracleOS-Team/miracleos-team.github.io/refs/heads/main/brand/wallpaper.jpg", "/usr/share/backgrounds/miracleos_dark_default.jpg")
+	}
+
 	// download labwc data
 
 	_, autostartFile := os.Stat(basedir.GetXDGDirectory("config").(string) + "/labwc/autostart")
@@ -92,7 +127,21 @@ func checkRequiredReposAndDownload() error {
 
 func checkRequiredSoftwareAndInstall() error {
 	_, err := foreignToplevel.ListToplevels()
-	return err
+	if err != nil {
+		return err
+	}
+
+	_, err = exec.LookPath("swww")
+	if err != nil {
+		return err
+	}
+
+	_, err = exec.LookPath("mpvpaper")
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
 
 func EnsureInstallation() error {

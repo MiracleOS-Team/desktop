@@ -13,11 +13,14 @@ func loadCSS() {
 	// Load CSS into GTK
 	provider, _ := gtk.CssProviderNew()
 	//err = provider.LoadFromData(css)
-	err := provider.LoadFromPath("/opt/miracleos-software/desktop/desktop.css")
-	//err := provider.LoadFromPath("desktop.css")
+
+	err := provider.LoadFromPath("desktop.css")
 	if err != nil {
-		log.Println("Failed to load CSS into GTK:", err)
-		return
+		err = provider.LoadFromPath("/opt/miracleos-software/desktop/desktop.css")
+		if err != nil {
+			log.Println("Failed to load CSS into GTK:", err)
+			return
+		}
 	}
 
 	display, err := gdk.DisplayGetDefault()
