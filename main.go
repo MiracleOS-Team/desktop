@@ -1,9 +1,13 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"os"
 
+	"github.com/BurntSushi/xgb/xproto"
+	"github.com/BurntSushi/xgbutil"
+	"github.com/BurntSushi/xgbutil/xprop"
 	"github.com/MiracleOS-Team/desktoplib/wallpaper"
 	"github.com/gotk3/gotk3/gdk"
 	"github.com/gotk3/gotk3/gtk"
@@ -68,6 +72,24 @@ func firstN(s string, n int) string {
 		i++
 	}
 	return s
+}
+
+func setStrutPartial(xu *xgbutil.XUtil, win xproto.Window, height uint, screenWidth uint) error {
+	// Reserve space at the bottom of the screen
+	strutPartial := []uint{
+		0, 0, 0, height, // left, right, top, bottom
+		0, 0, 0, 0, // left_start, left_end, right_start, right_end
+		0, 0, // top_start, top_end
+		0, screenWidth - 1, // bottom_start, bottom_end
+	}
+	err := xprop.ChangeProp32(xu, win, "_NET_WM_STRUT_PARTIAL", "CARDINAL", strutPartial...)
+
+	if err != nil {
+		return fmt.Errorf("failed to set _NET_WM_STRUT_PARTIAL: %s", err)
+	}
+
+	xprop.ChangeProp32(xu, win, "_NET_WM_STRUT", "CARDINAL", 0, 0, 0, height)
+	return nil
 }
 
 func main() {

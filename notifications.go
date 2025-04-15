@@ -130,6 +130,10 @@ func createNotificationBar(nDaemon *notificationDaemon.Daemon) *gtk.Window {
 	win.SetTitle("Notification Bar")
 	win.SetDecorated(false)
 	win.SetResizable(false)
+	win.SetKeepAbove(true)
+	win.SetSkipTaskbarHint(true)
+	win.SetSkipPagerHint(true)
+	win.SetAppPaintable(true)
 
 	layershell.InitForWindow(win)
 	layershell.SetNamespace(win, "miracleos")

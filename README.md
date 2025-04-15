@@ -1,4 +1,4 @@
-# desktop (WIP)
-The main desktop manager prgram
+# Desktop
+The main desktop environment
 
-Currently implements only the main menu
+Start by `go run -v .` or by downloading an executable in the github actions

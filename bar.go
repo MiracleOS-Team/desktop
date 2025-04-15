@@ -2,9 +2,12 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"strconv"
 	"time"
 
+	"github.com/BurntSushi/xgb/xproto"
+	"github.com/BurntSushi/xgbutil"
 	"github.com/MiracleOS-Team/desktoplib/batteryHandler"
 	"github.com/MiracleOS-Team/desktoplib/foreignToplevel"
 	"github.com/MiracleOS-Team/desktoplib/networkManagerHandler"
@@ -264,7 +267,20 @@ func createBar(nDaemon *notificationDaemon.Daemon) *gtk.Window {
 	win.SetTitle("Main Bar")
 	win.SetDecorated(false)
 	win.SetResizable(false)
+	win.SetKeepAbove(true)
+	win.SetSkipTaskbarHint(true)
+	win.SetSkipPagerHint(true)
 	win.SetTypeHint(gdk.WINDOW_TYPE_HINT_DOCK)
+	win.SetAppPaintable(true)
+
+	screen, _ := gdk.ScreenGetDefault()
+	root_window, _ := screen.GetRootWindow()
+	sc_height := root_window.WindowGetHeight()
+	sc_width := root_window.WindowGetWidth()
+	width := sc_width
+	height := 100
+	win.SetSizeRequest(width, 0)
+	win.Move((sc_width-width)/2, sc_height-height)
 
 	layershell.InitForWindow(win)
 	layershell.SetNamespace(win, "miracleos")
@@ -300,6 +316,27 @@ func createBar(nDaemon *notificationDaemon.Daemon) *gtk.Window {
 		box.ShowAll()
 		// Return true to keep the timeout active.
 		return true
+	})
+
+	glib.TimeoutAdd(100, func() bool {
+		gdkwin, _ := win.GetWindow()
+		if gdkwin == nil {
+			return true
+		}
+		_, height := win.GetSize()
+		xid := uint32(gdkwin.GetXID())
+
+		// Setup X connection
+		X, err := xgbutil.NewConn()
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		screen, _ := gdk.ScreenGetDefault()
+		rw, _ := screen.GetRootWindow()
+		setStrutPartial(X, xproto.Window(xid), uint(height), uint(rw.WindowGetWidth()))
+		win.Move((sc_width-width)/2, sc_height-height)
+		return false
 	})
 
 	win.Add(box)
