@@ -22,9 +22,9 @@ func createAppGroup(apps []desktopFiles.DesktopFile) *gtk.Box {
 		sc, _ := appBox.GetStyleContext()
 		sc.AddClass("mm_applist_app")
 
-		pixbuf, err := gdk.PixbufNewFromFile(app.Icon) // Replace with your image path
+		pixbuf, err := gdk.PixbufNewFromFile(app.Icon)
 		if err == nil {
-			// Define max size
+
 			maxWidth := 16
 			maxHeight := 16
 
@@ -169,7 +169,7 @@ func createPowerButtons() *gtk.Box {
 func createMainMenu() *gtk.Window {
 	win, _ := gtk.WindowNew(gtk.WINDOW_TOPLEVEL)
 	win.SetTitle("Main Menu")
-	win.SetDefaultSize(600, 600)
+
 	win.SetDecorated(false)
 	win.SetResizable(false)
 	win.SetTypeHint(gdk.WINDOW_TYPE_HINT_DOCK)
@@ -218,9 +218,9 @@ func createMainMenu() *gtk.Window {
 	sc, _ = otherTab.GetStyleContext()
 	sc.AddClass("mm_tab")
 
-	appList.SetSizeRequest(300, 600)
-	fastApps.SetSizeRequest(300, 600)
-	otherTab.SetSizeRequest(300, 600)
+	appList.SetSizeRequest(300, 500)
+	fastApps.SetSizeRequest(300, 500)
+	otherTab.SetSizeRequest(300, 500)
 
 	contentBox.PackStart(appList, false, false, 10)
 	contentBox.PackStart(fastApps, false, false, 10)

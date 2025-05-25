@@ -293,7 +293,7 @@ func createBar(nDaemon *notificationDaemon.Daemon) *gtk.Window {
 	layershell.SetMargin(win, layershell.LAYER_SHELL_EDGE_LEFT, 0)
 	layershell.SetMargin(win, layershell.LAYER_SHELL_EDGE_RIGHT, 0)
 
-	layershell.SetExclusiveZone(win, 75)
+	layershell.SetExclusiveZone(win, 50)
 	layershell.SetKeyboardMode(win, layershell.LAYER_SHELL_KEYBOARD_MODE_NONE)
 	disp, _ := gdk.DisplayGetDefault()
 	mon, _ := disp.GetMonitor(0)
